@@ -1,0 +1,46 @@
+Compilation: gcc main.c scanner.c parser.c semantic.c
+
+Execution: ./a.out
+
+main.c: Driver function for the parser.
+ 	syntaxTree=parse();
+
+parser.c/scanner.c: Contains all functions which
+	     are used for building the parse tree
+
+By default the output is displayed in the stdout, if need to be
+written to file, "output.txt" please set the TERMINAL_OUTPUT flag
+in main.c to 0.
+
+The functions used are:
+################# SCANNER FUNCTIONS ##############################
+static int getNextChar();  // Reads next character from the input file
+static void ungetNextChar();  // Moves file pointer one step back, backtrack.
+static TokenType reservedLookup(char *tokenString);  // Check if the found ID is a reserved word or not
+TokenType getToken(); // returns token type for each identifier
+
+################## UTILITY FUNCTIONS #############################
+TreeNode *newStmtNode(StmtKind kind);  // creates the a TreeNode object of Statement type
+TreeNode *newExpNode(ExpKind kind);  // creates the a TreeNode object of Expression type
+static void match(TokenType expected);  // checks if the current token and the expected token is same or not
+char *copyString(char *s);  // returns a copy of the string s
+TreeNode * parse(void);  // parser, calls scanner to get token and starts building the tree
+
+################### PARSER FUNCTIONS ##############################
+TreeNode * factor();  
+TreeNode *term();
+TreeNode * simple_expr();
+TreeNode *expr();
+TreeNode *if_stmt();
+TreeNode * repeat_stmt();       // Functions for exp,term and factors
+TreeNode *assign_stmt();
+TreeNode * read_stmt();
+TreeNode * write_stmt();
+TreeNode *statement();
+TreeNode * stmt_sequence();
+###############################################################
+
+This code was refered from the Compilers textbook. I have used the same
+format and structure/definitions as described in the textbook.
+
+Written and Submitted by : V.Suriyanarayanan. Roll: 15563

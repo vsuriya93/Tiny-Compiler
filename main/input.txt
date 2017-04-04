@@ -1,0 +1,11 @@
+{Factorial}
+read X;
+if 0 < X then
+    fact:=1;
+    repeat
+      fact:=fact*X;
+      X:=X-1
+    until X=0;
+    write fact
+end
+
